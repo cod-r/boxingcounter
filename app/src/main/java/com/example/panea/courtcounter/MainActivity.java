@@ -7,8 +7,8 @@ import android.widget.TextView;
 
 public class MainActivity extends AppCompatActivity {
 
-    int scoreTeamA = 0;
-    int scoreTeamB = 0;
+    int redPlayer = 0;
+    int bluePlayer = 0;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -16,92 +16,74 @@ public class MainActivity extends AppCompatActivity {
         setContentView(R.layout.activity_main);
     }
 
+    /**
+     * Used for saving and restoring the app state after screen rotation
+     */
+
     @Override
     public void onSaveInstanceState(Bundle outState) {
         super.onSaveInstanceState(outState);
-        outState.putInt("scoreTeamA", scoreTeamA);
-        outState.putInt("scoreTeamB", scoreTeamB);
+        outState.putInt("redPlayer", redPlayer);
+        outState.putInt("bluePlayer", bluePlayer);
     }
 
     @Override
     protected void onRestoreInstanceState(Bundle savedInstanceState) {
         super.onRestoreInstanceState(savedInstanceState);
-        scoreTeamA = savedInstanceState.getInt("scoreTeamA");
-        scoreTeamB = savedInstanceState.getInt("scoreTeamB");
-        displayForTeamA(scoreTeamA);
-        displayForTeamB(scoreTeamB);
+        redPlayer = savedInstanceState.getInt("redPlayer");
+        bluePlayer = savedInstanceState.getInt("bluePlayer");
+        displayForRedPlayer(redPlayer);
+        displayForBluePlayer(bluePlayer);
     }
+
+
     /**
-     * Displays the given score for Team A.
+     * Displays the given score for Red Player.
      */
 
-    public void displayForTeamA(int score) {
+    public void displayForRedPlayer(int score) {
 
-        TextView scoreView = (TextView) findViewById(R.id.team_a_score);
+        TextView scoreView = (TextView) findViewById(R.id.red_player_score);
 
         scoreView.setText(String.valueOf(score));
 
     }
 
     /**
-     * Displays the given score for Team B.
+     * Displays the given score for Blue Player.
      */
 
-    public void displayForTeamB(int score) {
-        TextView scoreView = (TextView) findViewById(R.id.team_b_score);
+    public void displayForBluePlayer(int score) {
+        TextView scoreView = (TextView) findViewById(R.id.blue_player_score);
         scoreView.setText(String.valueOf(score));
     }
+
     /**
-
-     * Updates the score for team A.
-
+     * Updates the score for red player.
      */
 
-    public void addThreeToTeamA (View view) {
-        scoreTeamA = scoreTeamA + 3;
-        displayForTeamA(scoreTeamA);
-    }
-
-    public void addTwoToTeamA (View view) {
-        scoreTeamA = scoreTeamA + 2;
-        displayForTeamA(scoreTeamA);
-    }
-
-
-    public void addOneToTeamA (View view) {
-        scoreTeamA = scoreTeamA + 1;
-        displayForTeamA(scoreTeamA);
+    public void addOneToRedPlayer(View view) {
+        redPlayer = redPlayer + 1;
+        displayForRedPlayer(redPlayer);
     }
 
     /**
-
-     * Updates the score for team B.
-
+     * Updates the score for blue player.
      */
 
-    public void addThreeToTeamB (View view) {
-        scoreTeamB = scoreTeamB + 3;
-        displayForTeamB(scoreTeamB);
-    }
-
-    public void addTwoToTeamB (View view) {
-        scoreTeamB = scoreTeamB + 2;
-        displayForTeamB(scoreTeamB);
-    }
-
-    public void addOneToTeamB (View view) {
-        scoreTeamB = scoreTeamB + 1;
-        displayForTeamB(scoreTeamB);
+    public void addOneToBluePlayer(View view) {
+        bluePlayer = bluePlayer + 1;
+        displayForBluePlayer(bluePlayer);
     }
 
     /**
-     * Resets score for both teams
+     * Resets score for both players
      */
 
-    public void resetScore (View view) {
-        scoreTeamA = 0;
-        scoreTeamB = 0;
-        displayForTeamA(scoreTeamA);
-        displayForTeamB(scoreTeamB);
+    public void resetScore(View view) {
+        redPlayer = 0;
+        bluePlayer = 0;
+        displayForRedPlayer(redPlayer);
+        displayForBluePlayer(bluePlayer);
     }
 }
